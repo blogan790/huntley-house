@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huntley House — Puzzles</title>
+  <style>
+    /* ─── Fonts ─────────────────────────────────────────────── */
+    @font-face { font-family: 'StylebenderRetro'; src: url('assets/fonts/Stylebender-Retro.otf') format('opentype'); }
+    @font-face { font-family: 'Stylebender'; src: url('assets/fonts/Stylebender.otf') format('opentype'); }
+    @font-face { font-family: 'KeplerItalic'; src: url('assets/fonts/Kepler Std Medium Semicondensed Italic.otf') format('opentype'); font-style: italic; }
+    @font-face { font-family: 'NHaasGrotesk'; src: url('assets/fonts/NHaasGroteskDSPro-55Rg.ttf') format('truetype'); }
+
+    /* ─── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --cocoa:      #2F1B1B;
+      --cream:      #FFFCF8;
+      --cream-warm: #EFE6D8;
+      --olive:      #848247;
+      --orange:     #E46C3A;
+      --mauve:      #C89AA6;
+      --blue:       #8FBEC4;
+      --mustard:    #E0B24A;
+      --choc:       #4A2F2A;
+      --stone:      #9A9284;
+      --font-title:  'StylebenderRetro', serif;
+      --font-sub:    'Stylebender', serif;
+      --font-italic: 'KeplerItalic', serif;
+      --font-body:   'NHaasGrotesk', sans-serif;
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--cocoa); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 40px;
+      height: 72px;
+      background: var(--cocoa);
+    }
+    .nav__left { display: flex; gap: 32px; align-items: center; }
+    .nav__left a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.65;
+      transition: opacity 0.2s;
+    }
+    .nav__left a:hover { opacity: 1; }
+    .nav__logo {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav__logo-mark { height: 36px; width: auto; }
+    .nav__logo-type { height: 34px; width: auto; }
+    .nav__right {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .nav__icon-btn {
+      background: none;
+      border: none;
+      color: var(--cream);
+      opacity: 0.65;
+      display: flex;
+      align-items: center;
+      transition: opacity 0.2s;
+      padding: 4px;
+    }
+    .nav__icon-btn:hover { opacity: 1; }
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.25s, opacity 0.25s;
+      transform-origin: center;
+    }
+    .nav__hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cocoa);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      padding-top: 72px;
+    }
+    .nav__drawer.is-open { display: flex; }
+    .nav__drawer a { font-family: var(--font-title); font-size: 32px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); }
+
+    /* ─── Product Page ───────────────────────────────────────── */
+    .product-page {
+      padding-top: 72px;
+      min-height: 80vh;
+    }
+
+    .product__breadcrumb {
+      padding: 24px 48px 0;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .product__breadcrumb a { color: var(--stone); opacity: 0.7; transition: opacity 0.2s; }
+    .product__breadcrumb a:hover { opacity: 1; }
+    .product__breadcrumb span { opacity: 1; color: var(--cocoa); }
+
+    .product__layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 48px 80px;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Gallery */
+    .product__gallery { position: sticky; top: 96px; }
+    .product__image-wrap {
+      position: relative;
+      background: var(--cream-warm);
+      overflow: hidden;
+      aspect-ratio: 1534 / 1794;
+    }
+    .product__image-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+    }
+    .product__image-wrap img.hidden { opacity: 0; }
+
+    .product__toggle {
+      display: flex;
+      gap: 0;
+      margin-top: 12px;
+      border: 1px solid rgba(47,27,27,0.15);
+    }
+    .toggle-btn {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cocoa);
+      opacity: 0.45;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .toggle-btn + .toggle-btn { border-left: 1px solid rgba(47,27,27,0.15); }
+    .toggle-btn.is-active { background: var(--cocoa); color: var(--cream); opacity: 1; }
+    .toggle-btn:hover:not(.is-active) { opacity: 0.8; background: var(--cream-warm); }
+
+    /* Info */
+    .product__info { padding-top: 8px; }
+
+    .product__meta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 14px;
+    }
+
+    .product__title {
+      font-family: var(--font-title);
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--cocoa);
+      margin-bottom: 24px;
+    }
+
+    .product__pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .product__price-was {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--stone);
+      text-decoration: line-through;
+    }
+    .product__price {
+      font-family: var(--font-body);
+      font-size: 22px;
+      color: var(--cocoa);
+    }
+    .product__sale-tag {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--orange);
+      color: var(--cream);
+      padding: 4px 10px;
+      align-self: center;
+    }
+
+    .product__rule {
+      height: 1px;
+      background: rgba(47,27,27,0.12);
+      margin: 28px 0;
+    }
+
+    .product__desc {
+      font-family: var(--font-italic);
+      font-style: italic;
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.55;
+      color: var(--cocoa);
+      margin-bottom: 28px;
+    }
+
+    .product__specs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 36px;
+      border: 1px solid rgba(47,27,27,0.12);
+    }
+    .product__spec {
+      flex: 1;
+      padding: 16px 20px;
+      text-align: center;
+    }
+    .product__spec + .product__spec { border-left: 1px solid rgba(47,27,27,0.12); }
+    .product__spec-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 5px;
+    }
+    .product__spec-value {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--cocoa);
+    }
+
+    .product__add-btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: var(--cocoa);
+      color: var(--cream);
+      border: none;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+      margin-bottom: 16px;
+    }
+    .product__add-btn:hover { background: var(--choc); }
+
+    .product__back {
+      display: block;
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      transition: color 0.2s;
+    }
+    .product__back:hover { color: var(--cocoa); }
+
+    /* ─── Related ─────────────────────────────────────────────── */
+    .related {
+      background: var(--cream-warm);
+      padding: 64px 48px 80px;
+    }
+    .related__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 36px;
+    }
+    .related__title {
+      font-family: var(--font-title);
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cocoa);
+    }
+    .related__link {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      transition: color 0.2s;
+    }
+    .related__link:hover { color: var(--cocoa); }
+    .related__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* ─── Card (shared) ──────────────────────────────────────── */
+    .card { display: block; }
+    .card__image-wrap {
+      position: relative;
+      aspect-ratio: 1534 / 1794;
+      overflow: hidden;
+      background: var(--cream-warm);
+      margin-bottom: 14px;
+    }
+    .card__puzzle-img, .card__box-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+    .card__box-img { opacity: 0; }
+    .card:hover .card__puzzle-img { opacity: 0; }
+    .card:hover .card__box-img { opacity: 1; }
+    .card__info { padding: 0 2px; }
+    .card__name { font-family: var(--font-title); font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cocoa); margin-bottom: 4px; }
+    .card__meta { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); }
+    .card__footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+    .card__pricing { display: flex; align-items: baseline; gap: 6px; }
+    .card__price-was { font-family: var(--font-body); font-size: 12px; color: var(--stone); text-decoration: line-through; }
+    .card__price { font-family: var(--font-body); font-size: 14px; color: var(--cocoa); }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    .footer { background: var(--blue); padding: 0 48px 40px; }
+    .footer__divider { text-align: center; padding: 48px 0 56px; }
+    .footer__divider img { height: 20px; width: auto; opacity: 0.5; margin: 0 auto; }
+    .footer__top { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(47,27,27,0.12); }
+    .footer__col-label { font-family: var(--font-body); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cocoa); opacity: 0.5; margin-bottom: 18px; }
+    .footer__contact-info { font-family: var(--font-body); font-size: 13px; color: var(--cocoa); opacity: 0.7; line-height: 1.7; margin-bottom: 16px; }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer__links a { font-family: var(--font-body); font-size: 14px; color: var(--cocoa); opacity: 0.7; transition: opacity 0.2s; }
+    .footer__links a:hover { opacity: 1; }
+    .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+    .footer__copy { font-family: var(--font-body); font-size: 12px; color: var(--cocoa); opacity: 0.4; }
+    .footer__social { display: flex; gap: 20px; }
+    .footer__social a { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--cocoa); opacity: 0.5; transition: opacity 0.2s; }
+    .footer__social a:hover { opacity: 1; }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .product__layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 24px 24px 64px;
+      }
+      .product__gallery { position: static; }
+      .product__breadcrumb { padding: 20px 24px 0; }
+      .related { padding: 48px 24px 64px; }
+      .related__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .footer { padding: 0 24px 32px; }
+      .footer__top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer__bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 860px) {
+      .nav { padding: 0 16px; grid-template-columns: auto 1fr auto; }
+      .nav__left { display: none; }
+      .nav__hamburger { display: flex; order: -1; }
+      .nav__logo { justify-self: center; }
+      .nav__logo-mark { height: 32px; }
+      .nav__logo-type { height: 30px; }
+      .nav__right { gap: 12px; }
+      .nav__icon-btn.account { display: none; }
+      .product__specs { flex-wrap: wrap; }
+      .product__spec { min-width: 50%; }
+    }
+
+    @media (max-width: 480px) {
+      .nav__logo-mark { height: 28px; }
+      .nav__logo-type { height: 26px; }
+      .product__layout { padding: 16px 16px 56px; }
+      .product__breadcrumb { padding: 16px 16px 0; }
+      .related { padding: 40px 16px 56px; }
+      .related__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .footer__top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Mobile Drawer ──────────────────────────────────────── -->
+  <div class="nav__drawer" id="navDrawer">
+    <a href="index.html#collection" onclick="closeNav()">Shop</a>
+    <a href="index.html#ritual" onclick="closeNav()">Our Story</a>
+    <a href="the-edit.html" onclick="closeNav()">The Edit</a>
+    <a href="index.html#faq" onclick="closeNav()">FAQ</a>
+  </div>
+
+  <!-- ─── Nav ───────────────────────────────────────────────── -->
+  <header class="nav">
+    <div class="nav__left">
+      <a href="index.html#collection">Shop</a>
+      <a href="index.html#ritual">About</a>
+      <a href="the-edit.html">The Edit</a>
+    </div>
+    <a href="index.html" class="nav__logo">
+      <img class="nav__logo-mark" src="assets/logos/HH_logo_H_cream.svg" alt="">
+      <img class="nav__logo-type" src="assets/logos/HH_logo_type_cream.svg" alt="Huntley House">
+    </a>
+    <div class="nav__right">
+      <button class="nav__icon-btn account" aria-label="Account">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="nav__icon-btn" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </button>
+      <button class="nav__hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── Product ────────────────────────────────────────────── -->
+  <main class="product-page">
+    <p class="product__breadcrumb">
+      <a href="index.html">Home</a> / <a href="index.html#collection">Shop</a> / <span id="breadcrumb-name">—</span>
+    </p>
+
+    <div class="product__layout">
+
+      <!-- Gallery -->
+      <div class="product__gallery">
+        <div class="product__image-wrap">
+          <img id="img-box" src="" alt="">
+          <img id="img-art" src="" alt="" class="hidden">
+        </div>
+        <div class="product__toggle">
+          <button id="btn-box" class="toggle-btn is-active" onclick="showImage('box')">Box</button>
+          <button id="btn-art" class="toggle-btn" onclick="showImage('art')">Artwork</button>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="product__info">
+        <p class="product__meta" id="product-meta">— Piece Puzzle</p>
+        <h1 class="product__title" id="product-title">—</h1>
+        <div class="product__pricing">
+          <span class="product__price-was">$44.95</span>
+          <span class="product__price">$34.95</span>
+          <span class="product__sale-tag">Launch Sale</span>
+        </div>
+        <div class="product__rule"></div>
+        <p class="product__desc" id="product-desc">—</p>
+        <div class="product__specs" id="product-specs"></div>
+        <button class="product__add-btn">Add to Cart</button>
+        <a href="index.html#collection" class="product__back">← Continue Shopping</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ─── Related ────────────────────────────────────────────── -->
+  <section class="related">
+    <div class="related__header">
+      <p class="related__title">Complete the Collection</p>
+      <a href="index.html#collection" class="related__link">View All →</a>
+    </div>
+    <div class="related__grid" id="related-grid"></div>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer__divider">
+      <img src="assets/elements/HH_elements_divider01_chocolate.svg" alt="">
+    </div>
+    <div class="footer__top">
+      <div>
+        <p class="footer__col-label">Need Assistance?</p>
+        <div class="footer__contact-info">
+          Email: support@huntleyhouse.com<br>
+          Phone: 310-666-9430
+        </div>
+      </div>
+      <div>
+        <p class="footer__col-label">About</p>
+        <ul class="footer__links">
+          <li><a href="#">About</a></li>
+          <li><a href="the-edit.html">The Edit Blog</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="#">Wholesale</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-label">Social</p>
+        <ul class="footer__links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="mailto:support@huntleyhouse.com">Email us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-label">Resources</p>
+        <ul class="footer__links">
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026, Huntley House.</p>
+      <div class="footer__social">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">Pinterest</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── Product data ──────────────────────────────────────── */
+    const products = {
+      'route-retro': {
+        name: 'Route Retro',
+        pieces: 1000,
+        size: '27" × 19"',
+        box: 'assets/images/boxes-cropped/box top_route retro (lighter).jpg',
+        art: 'assets/images/puzzles/route retro.jpg',
+        desc: 'A love letter to the open road. Vintage travel posters, sun-faded maps, and the romance of getting somewhere slowly. Every piece feels like a detour worth taking.'
+      },
+      'vino-voyage': {
+        name: 'Vino Voyage',
+        pieces: 1000,
+        size: '27" × 19"',
+        box: 'assets/images/boxes-cropped/box top_vino voyage2.jpg',
+        art: 'assets/images/puzzles/vino voyage (final).jpg',
+        desc: 'Wine country at golden hour. Rolling hills, old bottles, warm light. A puzzle that pairs perfectly with a glass of whatever you\'ve been saving.'
+      },
+      'rainy-ramen': {
+        name: 'Rainy Ramen',
+        pieces: 1000,
+        size: '27" × 19"',
+        box: 'assets/images/boxes-cropped/box top_rainy ramen2.jpg',
+        art: 'assets/images/puzzles/rainy ramen_2.jpg',
+        desc: 'A city night captured in steam and neon. The warmth of a bowl of ramen on a rainy evening — translated piece by piece into something you can hold.'
+      },
+      'purrfect-pages': {
+        name: 'Purrfect Pages',
+        pieces: 500,
+        size: '19" × 13.5"',
+        box: 'assets/images/boxes-cropped/box top_purrfect pages2.jpg',
+        art: 'assets/images/puzzles/Purrfect Pages(new_edit).jpg',
+        desc: 'A bookshop where the cats run the place. Cozy shelves, warm light, and a feline in every corner. Perfect for the reader who believes a good book is best shared.'
+      },
+      'frosted-feelings': {
+        name: 'Frosted Feelings',
+        pieces: 1000,
+        size: '27" × 19"',
+        box: 'assets/images/boxes-cropped/box top_frosted feelings2.jpg',
+        art: 'assets/images/puzzles/frosted_feelings(final).jpg',
+        desc: 'Winter rendered softly — cool blues, muted whites, the quiet of a snowy morning. A meditative build for the season of staying in.'
+      },
+      'pastel-petals': {
+        name: 'Pastel Petals',
+        pieces: 1000,
+        size: '27" × 19"',
+        box: 'assets/images/boxes-cropped/box top_pastel petals.jpg',
+        art: 'assets/images/puzzles/petal pages_1.jpg',
+        desc: 'Spring in full bloom. Loose botanicals, soft pinks and greens, the feeling of a garden at its most generous. A joyful, unhurried build.'
+      },
+      'fabled-forest': {
+        name: 'Fabled Forest',
+        pieces: 1000,
+        size: '27" × 19"',
+        box: 'assets/images/boxes-cropped/box top_fabled forest2.jpg',
+        art: 'assets/images/puzzles/fabled forest (rework_brightened).jpg',
+        desc: 'An enchanted woodland at the edge of somewhere. Deep greens, dappled light, and the sense that something magical is just out of frame.'
+      },
+      'cat-christmas': {
+        name: 'Cat Christmas',
+        pieces: 500,
+        size: '19" × 13.5"',
+        box: 'assets/images/boxes-cropped/box top_cat christmas2.jpg',
+        art: 'assets/images/puzzles/Cat Christmas(500)_1.jpg',
+        desc: 'The holidays, feline edition. Festive, a little chaotic, and completely irresistible. A seasonal puzzle that earns a permanent spot in the tradition.'
+      }
+    };
+
+    /* ─── Load product from URL param ──────────────────────── */
+    function getSlug() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('puzzle') || 'route-retro';
+    }
+
+    function loadProduct() {
+      const slug = getSlug();
+      const p = products[slug] || products['route-retro'];
+
+      document.title = `Huntley House — ${p.name}`;
+      document.getElementById('breadcrumb-name').textContent = p.name;
+      document.getElementById('product-title').textContent = p.name;
+      document.getElementById('product-meta').textContent = `${p.pieces.toLocaleString()} Piece Puzzle`;
+      document.getElementById('product-desc').textContent = p.desc;
+
+      document.getElementById('img-box').src = p.box;
+      document.getElementById('img-box').alt = p.name;
+      document.getElementById('img-art').src = p.art;
+      document.getElementById('img-art').alt = `${p.name} artwork`;
+
+      document.getElementById('product-specs').innerHTML = `
+        <div class="product__spec">
+          <p class="product__spec-label">Pieces</p>
+          <p class="product__spec-value">${p.pieces.toLocaleString()}</p>
+        </div>
+        <div class="product__spec">
+          <p class="product__spec-label">Finished Size</p>
+          <p class="product__spec-value">${p.size}</p>
+        </div>
+        <div class="product__spec">
+          <p class="product__spec-label">Thickness</p>
+          <p class="product__spec-value">2mm</p>
+        </div>
+        <div class="product__spec">
+          <p class="product__spec-label">Material</p>
+          <p class="product__spec-value">Premium Board</p>
+        </div>
+      `;
+
+      loadRelated(slug);
+    }
+
+    /* ─── Image toggle ──────────────────────────────────────── */
+    function showImage(type) {
+      const imgBox = document.getElementById('img-box');
+      const imgArt = document.getElementById('img-art');
+      const btnBox = document.getElementById('btn-box');
+      const btnArt = document.getElementById('btn-art');
+
+      if (type === 'box') {
+        imgBox.classList.remove('hidden');
+        imgArt.classList.add('hidden');
+        btnBox.classList.add('is-active');
+        btnArt.classList.remove('is-active');
+      } else {
+        imgArt.classList.remove('hidden');
+        imgBox.classList.add('hidden');
+        btnArt.classList.add('is-active');
+        btnBox.classList.remove('is-active');
+      }
+    }
+
+    /* ─── Related products ──────────────────────────────────── */
+    function loadRelated(currentSlug) {
+      const allSlugs = Object.keys(products);
+      const others = allSlugs.filter(s => s !== currentSlug);
+      const pick = others.slice(0, 4);
+      const grid = document.getElementById('related-grid');
+
+      grid.innerHTML = pick.map(slug => {
+        const p = products[slug];
+        return `
+          <a class="card" href="product.html?puzzle=${slug}">
+            <div class="card__image-wrap">
+              <img class="card__puzzle-img" src="${p.box}" alt="${p.name}">
+              <img class="card__box-img" src="${p.art}" alt="${p.name} artwork">
+            </div>
+            <div class="card__info">
+              <h3 class="card__name">${p.name}</h3>
+              <p class="card__meta">${p.pieces.toLocaleString()} Piece Puzzle</p>
+              <div class="card__footer">
+                <div class="card__pricing">
+                  <span class="card__price-was">$44.95</span>
+                  <span class="card__price">$34.95</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    /* ─── Nav ───────────────────────────────────────────────── */
+    function toggleNav() {
+      document.getElementById('navDrawer').classList.toggle('is-open');
+      document.getElementById('hamburger').classList.toggle('is-open');
+    }
+    function closeNav() {
+      document.getElementById('navDrawer').classList.remove('is-open');
+      document.getElementById('hamburger').classList.remove('is-open');
+    }
+
+    loadProduct();
+  </script>
+</body>
+</html>

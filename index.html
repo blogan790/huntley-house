@@ -278,7 +278,7 @@
     .section-header__label { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
     .section-header__title { font-family: var(--font-title); font-size: clamp(36px, 4.5vw, 64px); line-height: 0.95; letter-spacing: 0.02em; text-transform: uppercase; color: var(--cocoa); }
     .collection__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto; }
-    .card { display: flex; flex-direction: column; cursor: pointer; }
+    .card { display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit; }
     .card__image-wrap { position: relative; overflow: hidden; background: var(--cream-warm); margin-bottom: 14px; aspect-ratio: 1534 / 1794; }
     .card__image-wrap img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s ease, opacity 0.4s ease; }
     .card:hover .card__image-wrap img { transform: scale(1.02); }
@@ -484,8 +484,10 @@
 
     @media (max-width: 480px) {
       .nav__logo-mark { height: 28px; }
-      .nav__logo-type { height: 26px; }
+      .nav__logo-type { height: 24px; }
+      .hero__tagline { font-size: 18px; }
       .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .card__name { font-size: 13px; }
       .footer__top { grid-template-columns: 1fr; }
       .edit__grid { gap: 32px; }
       .marquee__item { height: 220px; }
@@ -596,7 +598,7 @@
       <h2 class="section-header__title">The Puzzles</h2>
     </div>
     <div class="collection__grid">
-      <article class="card">
+      <a class="card" href="product.html?puzzle=route-retro">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_route retro (lighter).jpg" alt="Route Retro">
           <img class="card__box-img" src="assets/images/puzzles/route retro.jpg" alt="Route Retro artwork">
@@ -604,10 +606,10 @@
         <div class="card__info">
           <h3 class="card__name">Route Retro</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="product.html?puzzle=vino-voyage">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_vino voyage2.jpg" alt="Vino Voyage">
           <img class="card__box-img" src="assets/images/puzzles/vino voyage (final).jpg" alt="Vino Voyage artwork">
@@ -615,10 +617,10 @@
         <div class="card__info">
           <h3 class="card__name">Vino Voyage</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="product.html?puzzle=rainy-ramen">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_rainy ramen2.jpg" alt="Rainy Ramen">
           <img class="card__box-img" src="assets/images/puzzles/rainy ramen_2.jpg" alt="Rainy Ramen artwork">
@@ -626,10 +628,10 @@
         <div class="card__info">
           <h3 class="card__name">Rainy Ramen</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="product.html?puzzle=purrfect-pages">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_purrfect pages2.jpg" alt="Purrfect Pages">
           <img class="card__box-img" src="assets/images/puzzles/Purrfect Pages(new_edit).jpg" alt="Purrfect Pages artwork">
@@ -637,10 +639,10 @@
         <div class="card__info">
           <h3 class="card__name">Purrfect Pages</h3>
           <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="product.html?puzzle=frosted-feelings">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_frosted feelings2.jpg" alt="Frosted Feelings">
           <img class="card__box-img" src="assets/images/puzzles/frosted_feelings(final).jpg" alt="Frosted Feelings artwork">
@@ -648,10 +650,10 @@
         <div class="card__info">
           <h3 class="card__name">Frosted Feelings</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="product.html?puzzle=pastel-petals">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_pastel petals.jpg" alt="Pastel Petals">
           <img class="card__box-img" src="assets/images/puzzles/petal pages_1.jpg" alt="Pastel Petals artwork">
@@ -659,10 +661,10 @@
         <div class="card__info">
           <h3 class="card__name">Pastel Petals</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="product.html?puzzle=fabled-forest">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_fabled forest2.jpg" alt="Fabled Forest">
           <img class="card__box-img" src="assets/images/puzzles/fabled forest (rework_brightened).jpg" alt="Fabled Forest artwork">
@@ -670,10 +672,10 @@
         <div class="card__info">
           <h3 class="card__name">Fabled Forest</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="product.html?puzzle=cat-christmas">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_cat christmas2.jpg" alt="Cat Christmas">
           <img class="card__box-img" src="assets/images/puzzles/Cat Christmas(500)_1.jpg" alt="Cat Christmas artwork">
@@ -681,9 +683,9 @@
         <div class="card__info">
           <h3 class="card__name">Cat Christmas</h3>
           <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
         </div>
-      </article>
+      </a>
     </div>
   </section>
 
@@ -698,7 +700,7 @@
       <div class="ritual__divider">
         <img src="assets/elements/HH_elements_divider01_chocolate.svg" alt="">
       </div>
-      <p class="ritual__body">At Huntley House, puzzles aren't about rushing to the finish; they're about enjoying the process. Think of it as brain cardio — no gym required.</p>
+      <p class="ritual__body">At Huntley House, puzzles aren't a novelty — they're a ritual. Something you return to. A way of being present that doesn't require a screen, a plan, or an excuse.</p>
       <a href="#collection" class="ritual__cta">Get Puzzling</a>
     </div>
   </section>
