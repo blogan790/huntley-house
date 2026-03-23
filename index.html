@@ -177,9 +177,9 @@
     .hero__tagline {
       font-family: var(--font-italic);
       font-style: italic;
-      font-size: clamp(18px, 2.2vw, 26px);
+      font-size: clamp(22px, 2.8vw, 34px);
       color: var(--cream);
-      opacity: 0.85;
+      opacity: 1;
       margin-bottom: 40px;
     }
     .hero__cta {
@@ -295,6 +295,8 @@
     .card__name { font-family: var(--font-title); font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cocoa); line-height: 1; margin-bottom: 5px; }
     .card__meta { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); }
     .card__footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+    .card__pricing { display: flex; align-items: baseline; gap: 8px; }
+    .card__price-was { font-family: var(--font-body); font-size: 12px; color: var(--stone); text-decoration: line-through; }
     .card__price { font-family: var(--font-body); font-size: 14px; color: var(--cocoa); }
     .card__btn { font-family: var(--font-body); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; background: none; border: 1px solid var(--cocoa); color: var(--cocoa); padding: 7px 14px; transition: background 0.2s, color 0.2s; }
     .card__btn:hover { background: var(--cocoa); color: var(--cream); }
@@ -541,7 +543,6 @@
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <p class="hero__eyebrow">Now Available</p>
       <h1 class="hero__headline">Less Scrolling.<br>More Puzzling.</h1>
       <p class="hero__tagline">Brain cardio. No gym required.</p>
       <a href="#collection" class="hero__cta">Shop the Collection</a>
@@ -563,7 +564,7 @@
     <div class="value-prop">
       <span class="value-prop__dot"></span>
       <p class="value-prop__title">Elevated Artwork</p>
-      <p class="value-prop__body">We'll help you find the right puzzle fits your skill level and every window sill.</p>
+      <p class="value-prop__body">We'll help you find the right puzzle for your skill level — and every windowsill.</p>
     </div>
   </div>
 
@@ -604,79 +605,13 @@
     <div class="collection__grid">
       <article class="card">
         <div class="card__image-wrap">
-          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_cat christmas2.jpg" alt="Cat Christmas">
-          <img class="card__box-img" src="assets/images/puzzles/Cat Christmas(500)_1.jpg" alt="Cat Christmas artwork">
-        </div>
-        <div class="card__info">
-          <h3 class="card__name">Cat Christmas</h3>
-          <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__image-wrap">
-          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_fabled forest2.jpg" alt="Fabled Forest">
-          <img class="card__box-img" src="assets/images/puzzles/fabled forest (rework_brightened).jpg" alt="Fabled Forest artwork">
-        </div>
-        <div class="card__info">
-          <h3 class="card__name">Fabled Forest</h3>
-          <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__image-wrap">
-          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_frosted feelings2.jpg" alt="Frosted Feelings">
-          <img class="card__box-img" src="assets/images/puzzles/frosted_feelings(final).jpg" alt="Frosted Feelings artwork">
-        </div>
-        <div class="card__info">
-          <h3 class="card__name">Frosted Feelings</h3>
-          <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__image-wrap">
-          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_pastel petals.jpg" alt="Pastel Petals">
-          <img class="card__box-img" src="assets/images/puzzles/petal pages_1.jpg" alt="Pastel Petals artwork">
-        </div>
-        <div class="card__info">
-          <h3 class="card__name">Pastel Petals</h3>
-          <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__image-wrap">
-          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_purrfect pages2.jpg" alt="Purrfect Pages">
-          <img class="card__box-img" src="assets/images/puzzles/Purrfect Pages(new_edit).jpg" alt="Purrfect Pages artwork">
-        </div>
-        <div class="card__info">
-          <h3 class="card__name">Purrfect Pages</h3>
-          <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__image-wrap">
-          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_rainy ramen2.jpg" alt="Rainy Ramen">
-          <img class="card__box-img" src="assets/images/puzzles/rainy ramen_2.jpg" alt="Rainy Ramen artwork">
-        </div>
-        <div class="card__info">
-          <h3 class="card__name">Rainy Ramen</h3>
-          <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_route retro (lighter).jpg" alt="Route Retro">
           <img class="card__box-img" src="assets/images/puzzles/route retro.jpg" alt="Route Retro artwork">
         </div>
         <div class="card__info">
           <h3 class="card__name">Route Retro</h3>
           <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
         </div>
       </article>
       <article class="card">
@@ -687,7 +622,73 @@
         <div class="card__info">
           <h3 class="card__name">Vino Voyage</h3>
           <p class="card__meta">500 Piece Puzzle</p>
-          <div class="card__footer"><span class="card__price">$39.95</span><button class="card__btn">Add to Cart</button></div>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__image-wrap">
+          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_rainy ramen2.jpg" alt="Rainy Ramen">
+          <img class="card__box-img" src="assets/images/puzzles/rainy ramen_2.jpg" alt="Rainy Ramen artwork">
+        </div>
+        <div class="card__info">
+          <h3 class="card__name">Rainy Ramen</h3>
+          <p class="card__meta">500 Piece Puzzle</p>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__image-wrap">
+          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_purrfect pages2.jpg" alt="Purrfect Pages">
+          <img class="card__box-img" src="assets/images/puzzles/Purrfect Pages(new_edit).jpg" alt="Purrfect Pages artwork">
+        </div>
+        <div class="card__info">
+          <h3 class="card__name">Purrfect Pages</h3>
+          <p class="card__meta">500 Piece Puzzle</p>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__image-wrap">
+          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_frosted feelings2.jpg" alt="Frosted Feelings">
+          <img class="card__box-img" src="assets/images/puzzles/frosted_feelings(final).jpg" alt="Frosted Feelings artwork">
+        </div>
+        <div class="card__info">
+          <h3 class="card__name">Frosted Feelings</h3>
+          <p class="card__meta">500 Piece Puzzle</p>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__image-wrap">
+          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_pastel petals.jpg" alt="Pastel Petals">
+          <img class="card__box-img" src="assets/images/puzzles/petal pages_1.jpg" alt="Pastel Petals artwork">
+        </div>
+        <div class="card__info">
+          <h3 class="card__name">Pastel Petals</h3>
+          <p class="card__meta">500 Piece Puzzle</p>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__image-wrap">
+          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_fabled forest2.jpg" alt="Fabled Forest">
+          <img class="card__box-img" src="assets/images/puzzles/fabled forest (rework_brightened).jpg" alt="Fabled Forest artwork">
+        </div>
+        <div class="card__info">
+          <h3 class="card__name">Fabled Forest</h3>
+          <p class="card__meta">500 Piece Puzzle</p>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__image-wrap">
+          <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_cat christmas2.jpg" alt="Cat Christmas">
+          <img class="card__box-img" src="assets/images/puzzles/Cat Christmas(500)_1.jpg" alt="Cat Christmas artwork">
+        </div>
+        <div class="card__info">
+          <h3 class="card__name">Cat Christmas</h3>
+          <p class="card__meta">500 Piece Puzzle</p>
+          <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div><button class="card__btn">Add to Cart</button></div>
         </div>
       </article>
     </div>
