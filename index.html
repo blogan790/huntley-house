@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Huntley House — Puzzles</title>
+  <!-- Preload hero image for LCP -->
+  <link rel="preload" as="image" href="assets/images/hero/rainy-ramen-768.webp"
+        imagesrcset="assets/images/hero/rainy-ramen-768.webp 768w, assets/images/hero/rainy-ramen-1440.webp 1440w"
+        imagesizes="100vw" type="image/webp">
   <style>
     /* ─── Fonts ─────────────────────────────────────────────── */
     @font-face { font-family: 'StylebenderRetro'; src: url('assets/fonts/Stylebender-Retro.otf') format('opentype'); }
@@ -130,6 +134,7 @@
     .hero__bg {
       position: absolute;
       inset: 0;
+      background: #504c56;
     }
     .hero__bg img {
       width: 100%;
@@ -178,17 +183,17 @@
     .hero__cta {
       display: inline-block;
       font-family: var(--font-body);
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--cream);
-      background: var(--cocoa);
-      padding: 16px 36px;
+      background: var(--orange);
+      padding: 18px 40px;
       border: none;
       width: fit-content;
       transition: background 0.2s;
     }
-    .hero__cta:hover { background: var(--choc); }
+    .hero__cta:hover { background: #c85c2a; }
 
     /* ─── Value Props ────────────────────────────────────────── */
     .value-props {
@@ -293,6 +298,9 @@
     .card__price { font-family: var(--font-body); font-size: 14px; color: var(--cocoa); }
     .card__btn { font-family: var(--font-body); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; background: none; border: 1px solid var(--cocoa); color: var(--cocoa); padding: 7px 14px; transition: background 0.2s, color 0.2s; }
     .card__btn:hover { background: var(--cocoa); color: var(--cream); }
+    .card__quick-add { width: 100%; padding: 13px; background: var(--orange); color: var(--cream); border: none; font-family: var(--font-body); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 10px; opacity: 0; transform: translateY(4px); transition: opacity 0.2s, transform 0.2s; }
+    .card:hover .card__quick-add { opacity: 1; transform: translateY(0); }
+    .card__quick-add:hover { background: #c85c2a; }
 
     /* ─── Ritual ─────────────────────────────────────────────── */
     .ritual {
@@ -614,6 +622,7 @@
       .collection { padding: 0 16px 72px; }
       .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .card__btn { display: none; }
+      .card__quick-add { opacity: 1; transform: none; }
 
       /* Ritual */
       .ritual { grid-template-columns: 1fr; }
@@ -697,7 +706,16 @@
   <!-- ─── Hero ──────────────────────────────────────────────── -->
   <section class="hero">
     <div class="hero__bg">
-      <img src="assets/images/puzzles/rainy ramen_2.jpg" alt="">
+      <picture>
+        <source type="image/webp"
+                srcset="assets/images/hero/rainy-ramen-768.webp 768w,
+                        assets/images/hero/rainy-ramen-1440.webp 1440w"
+                sizes="100vw">
+        <source srcset="assets/images/hero/rainy-ramen-768.jpg 768w"
+                sizes="100vw">
+        <img src="assets/images/hero/rainy-ramen-768.jpg" alt=""
+             fetchpriority="high" decoding="sync">
+      </picture>
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
@@ -770,6 +788,7 @@
           <h3 class="card__name">Route Retro</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Route Retro',1000,'assets/images/boxes-cropped/box top_route retro (lighter).jpg')">Add to Cart</button>
         </div>
       </a>
       <a class="card" href="product.html?puzzle=vino-voyage">
@@ -781,6 +800,7 @@
           <h3 class="card__name">Vino Voyage</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Vino Voyage',1000,'assets/images/boxes-cropped/box top_vino voyage2.jpg')">Add to Cart</button>
         </div>
       </a>
       <a class="card" href="product.html?puzzle=rainy-ramen">
@@ -792,6 +812,7 @@
           <h3 class="card__name">Rainy Ramen</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Rainy Ramen',1000,'assets/images/boxes-cropped/box top_rainy ramen2.jpg')">Add to Cart</button>
         </div>
       </a>
       <a class="card" href="product.html?puzzle=purrfect-pages">
@@ -803,6 +824,7 @@
           <h3 class="card__name">Purrfect Pages</h3>
           <p class="card__meta">500 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Purrfect Pages',500,'assets/images/boxes-cropped/box top_purrfect pages2.jpg')">Add to Cart</button>
         </div>
       </a>
       <a class="card" href="product.html?puzzle=frosted-feelings">
@@ -814,6 +836,7 @@
           <h3 class="card__name">Frosted Feelings</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Frosted Feelings',1000,'assets/images/boxes-cropped/box top_frosted feelings2.jpg')">Add to Cart</button>
         </div>
       </a>
       <a class="card" href="product.html?puzzle=pastel-petals">
@@ -825,6 +848,7 @@
           <h3 class="card__name">Pastel Petals</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Pastel Petals',1000,'assets/images/boxes-cropped/box top_pastel petals.jpg')">Add to Cart</button>
         </div>
       </a>
       <a class="card" href="product.html?puzzle=fabled-forest">
@@ -836,6 +860,7 @@
           <h3 class="card__name">Fabled Forest</h3>
           <p class="card__meta">1000 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Fabled Forest',1000,'assets/images/boxes-cropped/box top_fabled forest2.jpg')">Add to Cart</button>
         </div>
       </a>
       <a class="card" href="product.html?puzzle=cat-christmas">
@@ -847,6 +872,7 @@
           <h3 class="card__name">Cat Christmas</h3>
           <p class="card__meta">500 Piece Puzzle</p>
           <div class="card__footer"><div class="card__pricing"><span class="card__price-was">$44.95</span><span class="card__price">$34.95</span></div></div>
+          <button class="card__quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart('Cat Christmas',500,'assets/images/boxes-cropped/box top_cat christmas2.jpg')">Add to Cart</button>
         </div>
       </a>
     </div>
@@ -1048,7 +1074,9 @@
     }
 
     /* ─── Cart ──────────────────────────────────────────────── */
-    let cartItems = [];
+    let cartItems = JSON.parse(localStorage.getItem('hhCart') || '[]');
+
+    function saveCart() { localStorage.setItem('hhCart', JSON.stringify(cartItems)); }
 
     function openCart() {
       document.getElementById('cartDrawer').classList.add('is-open');
@@ -1066,14 +1094,18 @@
       } else {
         cartItems.push({ name, pieces, img, qty: 1, price: 34.95 });
       }
+      saveCart();
       renderCart();
       openCart();
     }
 
     function removeFromCart(name) {
       cartItems = cartItems.filter(i => i.name !== name);
+      saveCart();
       renderCart();
     }
+
+    renderCart(); // restore badge from localStorage on page load
 
     function renderCart() {
       const body = document.getElementById('cartBody');

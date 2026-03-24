@@ -108,20 +108,23 @@ Element files: `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\
 ---
 
 ## Asset Locations
+Source files live on Google Drive, mounted locally at `G:\My Drive\Huntley House Puzzles\Huntley House\`.
+Ignore the `Huntley Puzzles` folder in that drive.
+
 | Asset | Path |
 |-------|------|
 | Puzzle artwork (converted JPG) | `C:\Users\Brett Logan\huntley-house\assets\images\puzzles\` |
 | Box designs (converted JPG) | `C:\Users\Brett Logan\huntley-house\assets\images\boxes\` |
-| Brand guidelines PDF | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\HH_BrandGuidelines_011926.pdf` |
 | Guidelines pages (JPG previews) | `C:\Users\Brett Logan\huntley-house\assets\guidelines-preview\` |
-| Logos (SVG + PNG) | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\ASSETS\LOGOS\` |
-| Fonts | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\ASSETS\FONTS\` |
-| Graphic elements | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\ASSETS\GRAPHIC ELEMENTS\` |
-| Mood board images | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\MOOD\` |
-| Original TIFFs | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\PUZZLES\Puzzle Artwork\` |
-| Original box PDFs | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\PUZZLES\Huntley House Vol 1 Final Boxes\` |
-| iPhone product photos | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\PUZZLES\iPhone Pics\` |
-| Misc product photos | `C:\Users\Brett Logan\Downloads\Huntley House\Brand - Guidelines\PUZZLES\Misc Pics\` |
+| Brand guidelines PDF | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\HH_BrandGuidelines_011926.pdf` |
+| Logos (SVG + PNG) | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\ASSETS\LOGOS\` |
+| Fonts | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\ASSETS\FONTS\` |
+| Graphic elements | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\ASSETS\GRAPHIC ELEMENTS\` |
+| Mood board images | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\MOOD\` |
+| Original TIFFs | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\PUZZLES\Puzzle Artwork\` |
+| Original box PDFs | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\PUZZLES\Huntley House Vol 1 Final Boxes\` |
+| iPhone product photos | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\PUZZLES\iPhone Pics\` |
+| Misc product photos | `G:\My Drive\Huntley House Puzzles\Huntley House\Brand - Guidelines\PUZZLES\Misc Pics\` |
 
 ---
 

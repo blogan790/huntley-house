@@ -287,7 +287,7 @@
       display: block;
       width: 100%;
       padding: 18px;
-      background: var(--cocoa);
+      background: var(--orange);
       color: var(--cream);
       border: none;
       font-family: var(--font-body);
@@ -297,7 +297,29 @@
       transition: background 0.2s;
       margin-bottom: 16px;
     }
-    .product__add-btn:hover { background: var(--choc); }
+    .product__add-btn:hover { background: #c85c2a; }
+
+    /* ─── Sticky ATC (mobile) ────────────────────────────────── */
+    .sticky-atc {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--cream);
+      border-top: 1px solid rgba(47,27,27,0.12);
+      padding: 12px 16px;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    .sticky-atc.is-visible { transform: translateY(0); }
+    .sticky-atc__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .sticky-atc__name { font-family: var(--font-title); font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cocoa); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sticky-atc__price { font-family: var(--font-body); font-size: 13px; color: var(--cocoa); }
+    .sticky-atc__btn { background: var(--orange); color: var(--cream); border: none; font-family: var(--font-body); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 14px 20px; flex-shrink: 0; transition: background 0.2s; white-space: nowrap; }
+    .sticky-atc__btn:hover { background: #c85c2a; }
 
     .product__back {
       display: block;
@@ -432,6 +454,7 @@
       .footer { padding: 0 24px 32px; }
       .footer__top { grid-template-columns: 1fr 1fr; gap: 32px; }
       .footer__bottom { flex-direction: column; align-items: flex-start; }
+      .sticky-atc { display: flex; }
     }
 
     @media (max-width: 860px) {
@@ -681,6 +704,9 @@
       document.getElementById('img-art').src = p.art;
       document.getElementById('img-art').alt = `${p.name} artwork`;
 
+      const stickyName = document.getElementById('stickyAtcName');
+      if (stickyName) stickyName.textContent = p.name;
+
       document.getElementById('product-specs').innerHTML = `
         <div class="product__spec">
           <p class="product__spec-label">Pieces</p>
@@ -823,6 +849,16 @@
 
     loadProduct();
     renderCart();
+
+    // Sticky ATC — appear when main button scrolls out of view (mobile)
+    (function() {
+      const stickyAtc = document.getElementById('stickyAtc');
+      const addBtn = document.getElementById('addToCartBtn');
+      if (!stickyAtc || !addBtn) return;
+      new IntersectionObserver(function(entries) {
+        stickyAtc.classList.toggle('is-visible', !entries[0].isIntersecting);
+      }, { threshold: 0 }).observe(addBtn);
+    })();
   </script>
 
   <!-- ─── Cart Drawer ──────────────────────────────────────── -->
@@ -843,6 +879,15 @@
       <button class="cart-drawer__checkout" onclick="alert('Checkout coming soon — stay tuned!')">Proceed to Checkout</button>
       <a href="index.html#collection" class="cart-drawer__continue" onclick="closeCart()">Continue Shopping</a>
     </div>
+  </div>
+
+  <!-- ─── Sticky ATC (mobile) ────────────────────────────────── -->
+  <div class="sticky-atc" id="stickyAtc">
+    <div class="sticky-atc__info">
+      <span class="sticky-atc__name" id="stickyAtcName">—</span>
+      <span class="sticky-atc__price">$34.95</span>
+    </div>
+    <button class="sticky-atc__btn" onclick="handleAddToCart()">Add to Cart</button>
   </div>
 </body>
 </html>
